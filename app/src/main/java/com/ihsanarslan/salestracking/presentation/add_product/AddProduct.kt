@@ -5,10 +5,8 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,7 +20,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -46,21 +43,23 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil3.compose.AsyncImage
 import com.ihsanarslan.salestracking.R
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddProduct() {
-    // State variables for product name, description, and price
+
+    val vm = hiltViewModel<AddProductViewModel>()
+
     var productName by remember { mutableStateOf("") }
     var productDescription by remember { mutableStateOf("") }
     var productPrice by remember { mutableStateOf("") }
 
-    // State variable for selected image
     var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
 
-    // Photo picker launcher
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri -> selectedImageUri = uri }
@@ -71,7 +70,9 @@ fun AddProduct() {
             TopAppBar(
                 title = { Text(text = "Ürün ekle") },
                 navigationIcon = {
-                    IconButton(onClick = { /* Handle back navigation */ }) {
+                    IconButton(onClick = {
+
+                    }) {
                         Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
                     }
                 }
@@ -85,7 +86,6 @@ fun AddProduct() {
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Product name input field
             OutlinedTextField(
                 value = productName,
                 onValueChange = { productName = it },
@@ -93,7 +93,6 @@ fun AddProduct() {
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // Product description input field
             OutlinedTextField(
                 value = productDescription,
                 onValueChange = { productDescription = it },
@@ -104,7 +103,6 @@ fun AddProduct() {
                 maxLines = 5
             )
 
-            // Product price input field
             OutlinedTextField(
                 value = productPrice,
                 onValueChange = { productPrice = it },
@@ -113,14 +111,12 @@ fun AddProduct() {
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // Image selection or change area
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                // If an image is selected, display it, otherwise display the default image
                 if (selectedImageUri != null) {
                     AsyncImage(
                         model = selectedImageUri,
@@ -132,7 +128,7 @@ fun AddProduct() {
                     )
                 } else {
                     Image(
-                        painter = painterResource(id = R.drawable.ic_launcher_foreground), // Default image
+                        painter = painterResource(id = R.drawable.ic_launcher_foreground),
                         contentDescription = "Default Image",
                         modifier = Modifier
                             .size(100.dp)
@@ -141,7 +137,6 @@ fun AddProduct() {
                     )
                 }
 
-                // Button to select or change the image
                 Button(
                     onClick = {
                         photoPickerLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
@@ -153,9 +148,14 @@ fun AddProduct() {
                 }
             }
 
-            // Button to add the product
             Button(
-                onClick = { /* Handle product addition */ },
+                onClick = {
+                    vm.insert(
+                        name = productName,
+                        description = productDescription,
+                        price = productPrice
+                    )
+                },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary)
             ) {
