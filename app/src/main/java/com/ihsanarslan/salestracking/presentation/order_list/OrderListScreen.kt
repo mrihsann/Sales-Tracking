@@ -152,7 +152,7 @@ fun OrderListScreen(){
                             position = position
                         ),
                         additionalContent = {
-                            val formatter = SimpleDateFormat("dd:HH:mm", Locale.getDefault())
+                            val formatter = SimpleDateFormat("HH:mm", Locale.getDefault())
                             val formattedTime = item.createdAt?.let { Date(it) }
                                 ?.let { formatter.format(it) }
 
