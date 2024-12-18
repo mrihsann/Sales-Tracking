@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.ihsanarslan.salestracking.presentation.add_product.AddProduct
-import com.ihsanarslan.salestracking.presentation.list_product.ListProduct
+import androidx.navigation.compose.rememberNavController
+import com.ihsanarslan.salestracking.navigation.NavigationGraph
 import com.ihsanarslan.salestracking.ui.theme.SalesTrackingTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,7 +16,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SalesTrackingTheme {
-                AddProduct()
+                val navController = rememberNavController()
+                val startDestination = "OrderList"
+                NavigationGraph(
+                    navController = navController,
+                    startDestination = startDestination
+                )
             }
         }
     }

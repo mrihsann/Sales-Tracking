@@ -2,8 +2,8 @@ package com.ihsanarslan.salestracking.di
 
 import android.content.Context
 import androidx.room.Room
-import com.ihsanarslan.salestracking.data.local.database.ProductDatabase
-import com.ihsanarslan.salestracking.data.local.database.dao.ProductsDao
+import com.ihsanarslan.salestracking.data.local.database.STDatabase
+import com.ihsanarslan.salestracking.data.local.database.dao.OrderDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,20 +17,18 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext appContext: Context): ProductDatabase {
+    fun provideDatabase(@ApplicationContext appContext: Context): STDatabase {
         return Room.databaseBuilder(
             appContext,
-            ProductDatabase::class.java,
-            "productdatabase"
+            STDatabase::class.java,
+            "stdb"
         ).build()
     }
 
     @Provides
     @Singleton
-    fun provideTytExamDao(database: ProductDatabase): ProductsDao {
-        return database.productsDao()
+    fun provideOrderDao(database: STDatabase): OrderDao {
+        return database.orderDao()
     }
-
-
 
 }

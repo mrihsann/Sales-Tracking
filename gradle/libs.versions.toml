@@ -9,16 +9,15 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.2"
 composeBom = "2024.04.01"
-coilCompose = "3.0.0-rc01"
 ksp = "1.9.10-1.0.13"
 room = "2.6.1"
 hilt = "2.49"
 hilt-compiler = "1.2.0"
 hiltNavigationCompose = "1.2.0"
+navigation = "2.8.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 jetlime = { module = "io.github.pushpalroy:jetlime", version.ref = "jetlime" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -40,6 +39,7 @@ dagger-hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" 
 dagger-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 dagger-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hilt-compiler" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

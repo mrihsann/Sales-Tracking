@@ -69,9 +69,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //coil for async image
-    implementation(libs.coil.compose)
-
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
@@ -83,5 +80,12 @@ dependencies {
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
+    // Navigation
+    implementation(libs.navigation.compose)
+
     implementation(libs.jetlime)
+
+    implementation("androidx.compose.material:material-icons-extended:$2024.05.00")
+
+    implementation("com.maxkeppeler.sheets-compose-dialogs:calendar:1.3.0")
 }

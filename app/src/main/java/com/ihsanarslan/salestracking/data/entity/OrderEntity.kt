@@ -1,13 +1,12 @@
 package com.ihsanarslan.salestracking.data.entity
 
-import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ihsanarslan.salestracking.domain.model.ProductsDto
+import com.ihsanarslan.salestracking.domain.model.OrderDto
 
-@Entity(tableName = "Products")
-data class ProductsEntity(
+@Entity(tableName = "Orders")
+data class OrderEntity(
 
     @PrimaryKey(autoGenerate = true)
     val id:Int=0,
@@ -21,12 +20,16 @@ data class ProductsEntity(
     @ColumnInfo("price")
     val price:Double,
 
+    @ColumnInfo("createdAt")
+    val createdAt: Long = System.currentTimeMillis()
 )
 
-fun ProductsEntity.toDto(): ProductsDto {
-    return ProductsDto(
+fun OrderEntity.toDto(): OrderDto {
+    return OrderDto(
+        id=id,
         name=name,
         description=description,
-        price=price
+        price=price,
+        createdAt = createdAt
     )
 }
