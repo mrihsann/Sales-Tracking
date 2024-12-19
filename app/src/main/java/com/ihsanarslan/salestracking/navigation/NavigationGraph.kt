@@ -10,11 +10,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ihsanarslan.salestracking.presentation.home.HomeScreen
 import com.ihsanarslan.salestracking.presentation.order_list.OrderListScreen
+import com.ihsanarslan.salestracking.presentation.product_list.ProductListScreen
 
 @Composable
 fun NavigationGraph() {
     val navController = rememberNavController()
-    val startDestination = Router.HomeScreen
+    val startDestination = Router.ProductListScreen
     NavHost(
         navController = navController,
         startDestination = startDestination,
@@ -35,6 +36,15 @@ fun NavigationGraph() {
             popExitTransition = { slideOutOfContainer(AnimatedContentTransitionScope. SlideDirection.Right, animationSpec = tween(1000)) }
         ) {
             OrderListScreen(navController = navController)
+        }
+
+        composable<Router.ProductListScreen>(
+            enterTransition = { slideIntoContainer(AnimatedContentTransitionScope. SlideDirection.Left, animationSpec = tween(1000)) },
+            exitTransition = { slideOutOfContainer(AnimatedContentTransitionScope. SlideDirection.Left, animationSpec = tween(1000)) },
+            popEnterTransition = { slideIntoContainer(AnimatedContentTransitionScope. SlideDirection.Right, animationSpec = tween(1000)) },
+            popExitTransition = { slideOutOfContainer(AnimatedContentTransitionScope. SlideDirection.Right, animationSpec = tween(1000)) }
+        ) {
+            ProductListScreen(navController = navController)
         }
     }
 }

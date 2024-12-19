@@ -3,9 +3,9 @@ package com.ihsanarslan.salestracking.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ihsanarslan.salestracking.domain.model.OrderDto
-import com.ihsanarslan.salestracking.domain.use_case.GetLast10OrdersUseCase
-import com.ihsanarslan.salestracking.domain.use_case.GetLastDaysPricesUseCase
-import com.ihsanarslan.salestracking.domain.use_case.GetTodaySalesUseCase
+import com.ihsanarslan.salestracking.domain.use_case.order.GetLast10OrdersUseCase
+import com.ihsanarslan.salestracking.domain.use_case.order.GetLastDaysPricesUseCase
+import com.ihsanarslan.salestracking.domain.use_case.order.GetTodaySalesUseCase
 import com.ihsanarslan.salestracking.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

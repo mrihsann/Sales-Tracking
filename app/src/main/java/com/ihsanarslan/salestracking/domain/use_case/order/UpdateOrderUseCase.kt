@@ -1,4 +1,4 @@
-package com.ihsanarslan.salestracking.domain.use_case
+package com.ihsanarslan.salestracking.domain.use_case.order
 
 import com.ihsanarslan.salestracking.domain.model.OrderDto
 import com.ihsanarslan.salestracking.domain.repository.OrderDaoImpl

@@ -1,15 +1,14 @@
-package com.ihsanarslan.salestracking.domain.use_case
+package com.ihsanarslan.salestracking.domain.use_case.order
 
 import com.ihsanarslan.salestracking.domain.model.OrderDto
 import com.ihsanarslan.salestracking.domain.repository.OrderDaoImpl
 import com.ihsanarslan.salestracking.util.Resource
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetLast10OrdersUseCase @Inject constructor(
+class InsertOrderUseCase @Inject constructor(
     private val orderDaoImpl: OrderDaoImpl
 ) {
-    operator fun invoke() : Flow<Resource<List<OrderDto>>> {
-        return orderDaoImpl.getLast10Orders()
+    suspend operator fun invoke(order : OrderDto) : Resource<Unit> {
+        return orderDaoImpl.insert(order)
     }
 }

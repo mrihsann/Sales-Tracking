@@ -9,4 +9,7 @@ sealed class Router {
 
     @Serializable
     data object OrderListScreen : Router()
+
+    @Serializable
+    data object ProductListScreen : Router()
 }

@@ -3,10 +3,10 @@ package com.ihsanarslan.salestracking.presentation.order_list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ihsanarslan.salestracking.domain.model.OrderDto
-import com.ihsanarslan.salestracking.domain.use_case.DeleteOrderUseCase
-import com.ihsanarslan.salestracking.domain.use_case.GetOrdersBetweenDatesUseCase
-import com.ihsanarslan.salestracking.domain.use_case.InsertOrderUseCase
-import com.ihsanarslan.salestracking.domain.use_case.UpdateOrderUseCase
+import com.ihsanarslan.salestracking.domain.use_case.order.DeleteOrderUseCase
+import com.ihsanarslan.salestracking.domain.use_case.order.GetOrdersBetweenDatesUseCase
+import com.ihsanarslan.salestracking.domain.use_case.order.InsertOrderUseCase
+import com.ihsanarslan.salestracking.domain.use_case.order.UpdateOrderUseCase
 import com.ihsanarslan.salestracking.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
