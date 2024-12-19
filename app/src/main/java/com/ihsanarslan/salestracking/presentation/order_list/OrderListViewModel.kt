@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ihsanarslan.salestracking.domain.model.OrderDto
 import com.ihsanarslan.salestracking.domain.use_case.DeleteOrderUseCase
-import com.ihsanarslan.salestracking.domain.use_case.GetAllOrderUseCase
 import com.ihsanarslan.salestracking.domain.use_case.GetOrdersBetweenDatesUseCase
 import com.ihsanarslan.salestracking.domain.use_case.InsertOrderUseCase
 import com.ihsanarslan.salestracking.domain.use_case.UpdateOrderUseCase
@@ -17,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ListOrderViewModel @Inject constructor(
+class OrderListViewModel @Inject constructor(
     private val getOrdersBetweenDatesUseCase: GetOrdersBetweenDatesUseCase,
     private val deleteOrderUseCase: DeleteOrderUseCase,
     private val updateOrderUseCase: UpdateOrderUseCase,

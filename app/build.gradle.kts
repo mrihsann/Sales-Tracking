@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    kotlin("plugin.serialization") version "1.9.0"
 }
 
 android {
@@ -87,5 +88,9 @@ dependencies {
 
     implementation("androidx.compose.material:material-icons-extended:$2024.05.00")
 
-    implementation("com.maxkeppeler.sheets-compose-dialogs:calendar:1.3.0")
+    implementation(libs.calendar)
+
+    implementation (libs.compose.charts)
+
+    implementation(libs.kotlinx.serialization.json)
 }

@@ -43,10 +43,10 @@ class OrderDaoImpl @Inject constructor(
         }
     }
 
-    fun getAll(): Flow<Resource<List<OrderDto>>> = flow {
+    fun getLast10Orders(): Flow<Resource<List<OrderDto>>> = flow {
         emit(Resource.Loading)
         try {
-            val order = orderDao.getAll()
+            val order = orderDao.getLast10Orders()
             order.collect { list->
                 emit(Resource.Success(list.map { it.toDto() }))
             }
@@ -62,6 +62,28 @@ class OrderDaoImpl @Inject constructor(
             order.collect { list->
                 emit(Resource.Success(list.map { it.toDto() }))
             }
+        }catch (e: Exception){
+            emit(Resource.Error(e))
+        }
+    }
+
+    fun getLastDaysPrices(startDate: Long): Flow<Resource<List<Double>>> = flow {
+        emit(Resource.Loading)
+        try {
+            val order = orderDao.getLastDaysPrices(startDate = startDate)
+            order.collect { list->
+                emit(Resource.Success(list))
+            }
+        }catch (e: Exception){
+            emit(Resource.Error(e))
+        }
+    }
+
+    fun getTodaySales(): Flow<Resource<Double>> = flow {
+        emit(Resource.Loading)
+        try {
+            val order = orderDao.getTodaySales() ?: 0.0
+            emit(Resource.Success(order))
         }catch (e: Exception){
             emit(Resource.Error(e))
         }

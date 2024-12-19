@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BottomSheetScaffold
@@ -34,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.ihsanarslan.salestracking.domain.model.OrderDto
 import com.ihsanarslan.salestracking.presentation.order_list.components.CalendarComponent
 import com.ihsanarslan.salestracking.presentation.order_list.components.AddOrUpdateOrderSheetContent
@@ -51,9 +53,11 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeApi::class)
 @Composable
-fun OrderListScreen(){
+fun OrderListScreen(
+    navController: NavController
+){
 
-    val vm = hiltViewModel<ListOrderViewModel>()
+    val vm = hiltViewModel<OrderListViewModel>()
     val orders = vm.orderList.collectAsStateWithLifecycle()
     val loading = vm.isLoading.collectAsStateWithLifecycle()
     val error = vm.errorMessage.collectAsStateWithLifecycle()
@@ -89,11 +93,11 @@ fun OrderListScreen(){
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text(text = "Sipariş Geçmişi") },
-//                navigationIcon = {
-//                    IconButton(onClick = { navController.navigateUp() }) {
-//                        Icon(imageVector = Icons.Default.ArrowBackIosNew, contentDescription = "Back")
-//                    }
-//                },
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(imageVector = Icons.Default.ArrowBackIosNew, contentDescription = "Back")
+                    }
+                },
                 actions = {
                     IconButton(onClick = { showDateRangeDialog=true }) {
                         Icon(imageVector = Icons.Default.DateRange, contentDescription = "DateRange")

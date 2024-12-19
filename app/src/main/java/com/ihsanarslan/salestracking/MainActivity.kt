@@ -16,12 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SalesTrackingTheme {
-                val navController = rememberNavController()
-                val startDestination = "OrderList"
-                NavigationGraph(
-                    navController = navController,
-                    startDestination = startDestination
-                )
+                NavigationGraph()
             }
         }
     }
