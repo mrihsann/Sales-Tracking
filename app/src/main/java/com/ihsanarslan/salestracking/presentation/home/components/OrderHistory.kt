@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -24,7 +25,7 @@ fun OrderHistory(
     navigateToDetail : () -> Unit
 ) {
 
-    Card(
+    OutlinedCard(
         modifier = Modifier
             .fillMaxWidth()
     ) {
@@ -39,7 +40,7 @@ fun OrderHistory(
             ) {
                 Text(
                     text = "Sipariş Geçmişi",
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.titleLarge
                 )
                 TextButton(onClick = navigateToDetail ) {
                     Text(text = "Hepsini gör")
