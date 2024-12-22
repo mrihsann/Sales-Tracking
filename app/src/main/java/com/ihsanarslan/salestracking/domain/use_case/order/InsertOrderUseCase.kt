@@ -8,7 +8,10 @@ import javax.inject.Inject
 class InsertOrderUseCase @Inject constructor(
     private val orderDaoImpl: OrderDaoImpl
 ) {
-    suspend operator fun invoke(order : OrderDto) : Resource<Unit> {
-        return orderDaoImpl.insert(order)
+    suspend operator fun invoke(
+        order : OrderDto,
+        products: Map<Int, Int>
+    ): Resource<Unit> {
+        return orderDaoImpl.insert(order, products)
     }
 }

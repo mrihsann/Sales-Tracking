@@ -3,7 +3,7 @@ package com.ihsanarslan.salestracking.domain.model
 import com.ihsanarslan.salestracking.data.entity.OrderEntity
 
 data class OrderDto(
-    val id : Int = 0,
+    val orderId : Int = 0,
     val name : String,
     val description : String,
     val price : Double,
@@ -12,7 +12,7 @@ data class OrderDto(
 
 fun OrderDto.toEntity(): OrderEntity {
     return OrderEntity(
-        id = id,
+        orderId = orderId,
         name=name,
         description=description,
         price=price,

@@ -28,7 +28,6 @@ class ProductListViewModel @Inject constructor(
     val productList: StateFlow<List<ProductDto>>
         get() = _productList.asStateFlow()
 
-
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean>
         get() = _isLoading.asStateFlow()

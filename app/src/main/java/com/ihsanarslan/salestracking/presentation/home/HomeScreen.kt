@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -54,7 +55,7 @@ fun HomeScreen(
             RevenueChange(
                 priceList = priceList.value,
                 navigateToDetail = {
-                    navController.navigate(Router.OrderListScreen)
+                    navController.navigate(Router.AnalysisScreen)
                 }
             )
             Spacer(modifier = Modifier.height(25.dp))
@@ -64,6 +65,10 @@ fun HomeScreen(
                     navController.navigate(Router.OrderListScreen)
                 }
             )
+            Spacer(modifier = Modifier.height(25.dp))
+            Button(onClick = { navController.navigate(Router.ProductListScreen) }) {
+                Text(text = "Ürünler")
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ object AppModule {
         return Room.databaseBuilder(
             appContext,
             STDatabase::class.java,
-            "stdbn"
+            "stdbkns"
         ).build()
     }
 

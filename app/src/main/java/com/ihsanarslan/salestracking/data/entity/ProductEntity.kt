@@ -3,14 +3,13 @@ package com.ihsanarslan.salestracking.data.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ihsanarslan.salestracking.domain.model.OrderDto
 import com.ihsanarslan.salestracking.domain.model.ProductDto
 
 @Entity(tableName = "Products")
 data class ProductEntity(
 
     @PrimaryKey(autoGenerate = true)
-    val id:Int=0,
+    val productId:Int=0,
 
     @ColumnInfo("name")
     val name:String,
@@ -27,7 +26,7 @@ data class ProductEntity(
 
 fun ProductEntity.toDto(): ProductDto {
     return ProductDto(
-        id=id,
+        productId=productId,
         name=name,
         description=description,
         price=price,

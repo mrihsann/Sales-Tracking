@@ -8,7 +8,7 @@ import javax.inject.Inject
 class UpdateOrderUseCase @Inject constructor(
     private val orderDaoImpl: OrderDaoImpl
 ) {
-    suspend operator fun invoke(order : OrderDto) : Resource<Unit> {
-        return orderDaoImpl.update(order)
+    suspend operator fun invoke(order: OrderDto, products: Map<Int, Int>) : Resource<Unit> {
+        return orderDaoImpl.update(order,products)
     }
 }

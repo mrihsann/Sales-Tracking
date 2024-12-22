@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.ihsanarslan.salestracking.data.entity.OrderEntity
 import com.ihsanarslan.salestracking.data.entity.ProductEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -14,11 +13,17 @@ interface ProductDao{
     @Insert
     suspend fun insert(product: ProductEntity)
 
-    @Query("DELETE FROM Products WHERE id = :id")
+    @Query("DELETE FROM Products WHERE productId = :id")
     suspend fun delete(id:Int)
 
-    @Update
-    suspend fun update(product: ProductEntity)
+    @Query("""
+        UPDATE Products 
+        SET name = :name, 
+            description = :description, 
+            price = :price 
+        WHERE productId = :productId
+    """)
+    suspend fun update(productId: Int, name: String, description: String, price: Double)
 
     @Query("SELECT * FROM Products ORDER BY createdAt DESC")
     fun getAll(): Flow<List<ProductEntity>>

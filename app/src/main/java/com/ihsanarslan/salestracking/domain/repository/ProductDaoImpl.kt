@@ -1,12 +1,12 @@
 package com.ihsanarslan.salestracking.domain.repository
 
+import com.ihsanarslan.salestracking.data.entity.ProductEntity
 import com.ihsanarslan.salestracking.data.entity.toDto
 import com.ihsanarslan.salestracking.data.local.database.dao.ProductDao
 import com.ihsanarslan.salestracking.domain.model.ProductDto
 import com.ihsanarslan.salestracking.domain.model.toEntity
 import com.ihsanarslan.salestracking.util.Resource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -16,8 +16,8 @@ class ProductDaoImpl @Inject constructor(
 ){
 
     suspend fun insert(product: ProductDto) : Resource<Unit> {
-        Resource.Loading
         return try {
+            Resource.Loading
             productDao.insert(product.toEntity())
             Resource.Success(Unit)
         }
@@ -27,8 +27,8 @@ class ProductDaoImpl @Inject constructor(
     }
 
     suspend fun delete(id: Int) : Resource<Unit> {
-        Resource.Loading
         return try {
+            Resource.Loading
             productDao.delete(id)
             Resource.Success(Unit)
         }
@@ -38,9 +38,14 @@ class ProductDaoImpl @Inject constructor(
     }
 
     suspend fun update(product: ProductDto) : Resource<Unit> {
-        Resource.Loading
         return try {
-            productDao.update(product.toEntity())
+            Resource.Loading
+            productDao.update(
+                productId = product.productId,
+                name = product.name,
+                description = product.description,
+                price = product.price
+            )
             Resource.Success(Unit)
         }
         catch (e: Exception){
@@ -49,8 +54,8 @@ class ProductDaoImpl @Inject constructor(
     }
 
     fun getAll() : Flow<Resource<List<ProductDto>>> = flow {
-        emit(Resource.Loading)
         try {
+            emit(Resource.Loading)
             val data = productDao.getAll()
             val resultFlow = data.map { entityList ->
                 entityList.map { productEntity ->

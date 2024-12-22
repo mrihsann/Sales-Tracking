@@ -59,6 +59,8 @@ fun OrderListScreen(
 
     val vm = hiltViewModel<OrderListViewModel>()
     val orders = vm.orderList.collectAsStateWithLifecycle()
+    val ordersWithProducts = vm.ordersWithProducts.collectAsStateWithLifecycle()
+    val products = vm.productList.collectAsStateWithLifecycle()
     val loading = vm.isLoading.collectAsStateWithLifecycle()
     val error = vm.errorMessage.collectAsStateWithLifecycle()
 
@@ -115,22 +117,27 @@ fun OrderListScreen(
         sheetPeekHeight = 0.dp,
         sheetContent = {
             AddOrUpdateOrderSheetContent(
-                order = selectedOrder,
-                onSave = { id, name, description, price ->
+                order = ordersWithProducts.value.find { it.order.orderId == selectedOrder?.orderId },
+                products = products.value,
+                onSave = { id, name, description, price, products ->
                     if (selectedOrder == null) {
                         vm.insert(
-                            name = name,
-                            description = description,
-                            price = price
-                        )
-                    } else {
-                        vm.update(
-                            OrderDto(
-                                id = id,
+                            order = OrderDto(
                                 name= name,
                                 description= description,
                                 price = price.toDouble()
-                            )
+                            ),
+                            products = products
+                        )
+                    } else {
+                        vm.update(
+                            order = OrderDto(
+                                orderId = id,
+                                name= name,
+                                description= description,
+                                price = price.toDouble()
+                            ),
+                            products = products
                         )
                     }
                     scope.launch {
@@ -149,8 +156,8 @@ fun OrderListScreen(
                 JetLimeColumn(
                     modifier = Modifier.padding(16.dp),
                     itemsList = ItemsList(orders.value),
-                    key = { _, item -> item.id },
-                ) { index, item, position ->
+                    key = { _, item -> item.orderId },
+                ) { _, item, position ->
                     JetLimeExtendedEvent(
                         style = JetLimeEventDefaults.eventStyle(
                             position = position
@@ -169,7 +176,7 @@ fun OrderListScreen(
                             order = item,
                             onDeleteClick = {
                                 showDeleteDialog = true
-                                orderToDelete = item.id
+                                orderToDelete = item.orderId
                             },
                             onEditClick = {
                                 selectedOrder = item

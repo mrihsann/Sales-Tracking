@@ -9,7 +9,7 @@ import com.ihsanarslan.salestracking.domain.model.OrderDto
 data class OrderEntity(
 
     @PrimaryKey(autoGenerate = true)
-    val id:Int=0,
+    val orderId:Int=0,
 
     @ColumnInfo("name")
     val name:String,
@@ -26,7 +26,7 @@ data class OrderEntity(
 
 fun OrderEntity.toDto(): OrderDto {
     return OrderDto(
-        id=id,
+        orderId=orderId,
         name=name,
         description=description,
         price=price,

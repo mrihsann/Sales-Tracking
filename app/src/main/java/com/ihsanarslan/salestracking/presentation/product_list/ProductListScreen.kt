@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import com.ihsanarslan.salestracking.domain.model.OrderDto
 import com.ihsanarslan.salestracking.domain.model.ProductDto
 import com.ihsanarslan.salestracking.presentation.product_list.components.AddOrUpdateProductSheetContent
 import com.ihsanarslan.salestracking.presentation.product_list.components.ProductItem
@@ -91,7 +90,7 @@ fun ProductListScreen(
                     } else {
                         vm.update(
                             ProductDto(
-                                id = id,
+                                productId = id,
                                 name= name,
                                 description= description,
                                 price = price.toDouble()
@@ -116,7 +115,7 @@ fun ProductListScreen(
                         product = products.value[index],
                         onDeleteClick = {
                             showDeleteDialog = true
-                            productToDelete = products.value[index].id
+                            productToDelete = products.value[index].productId
                         },
                         onEditClick = {
                             selectedProduct = products.value[index]
