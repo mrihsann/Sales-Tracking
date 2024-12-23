@@ -106,6 +106,16 @@ interface OrderDao{
     fun getLastDaysPrices(startDate: Long): Flow<List<Double>>
 
     @Query("""
+        SELECT SUM(price) AS totalPrice
+        FROM Orders
+        WHERE createdAt BETWEEN :startDate AND :endDate
+        GROUP BY createdAt / 86400000
+        ORDER BY createdAt ASC
+    """)
+    fun getPricesForDateRange(startDate: Long, endDate: Long): Flow<List<Double>>
+
+
+    @Query("""
         SELECT SUM(price) 
         FROM Orders 
         WHERE createdAt >= (

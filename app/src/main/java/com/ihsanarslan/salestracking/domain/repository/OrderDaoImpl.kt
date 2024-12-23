@@ -103,6 +103,19 @@ class OrderDaoImpl @Inject constructor(
         }
     }
 
+    fun getPricesForDateRange(startDate: Long, endDate: Long): Flow<Resource<List<Double>>> = flow {
+        try {
+            emit(Resource.Loading)
+            val order = orderDao.getPricesForDateRange(startDate = startDate, endDate = endDate)
+            order.collect { list ->
+                emit(Resource.Success(list))
+            }
+        } catch (e: Exception) {
+            emit(Resource.Error(e))
+        }
+    }
+
+
     fun getTodaySales(): Flow<Resource<Double>> = flow {
         try {
             emit(Resource.Loading)

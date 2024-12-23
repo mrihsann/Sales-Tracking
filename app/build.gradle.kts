@@ -92,5 +92,7 @@ dependencies {
 
     implementation (libs.compose.charts)
 
+    implementation(libs.ycharts)
+
     implementation(libs.kotlinx.serialization.json)
 }
