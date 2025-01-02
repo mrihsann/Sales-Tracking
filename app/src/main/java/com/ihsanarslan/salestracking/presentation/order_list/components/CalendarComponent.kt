@@ -18,7 +18,7 @@ fun CalendarComponent(
     closeSelection: UseCaseState.() -> Unit,
     selectedRange: MutableState<Range<LocalDate>>
 ) {
-    val timeBoundary = LocalDate.now().let { now -> now.minusYears(5)..now }
+    val timeBoundary = LocalDate.now().let { now -> now.minusYears(50)..now }
 
     CalendarDialog(
         state = rememberUseCaseState(visible = true, true, onCloseRequest = closeSelection),

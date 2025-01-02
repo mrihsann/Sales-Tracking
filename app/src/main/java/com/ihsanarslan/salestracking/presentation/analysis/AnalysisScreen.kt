@@ -51,7 +51,7 @@ fun AnalysisScreen(
     val selectedRange = remember {
         mutableStateOf(
             Range(
-                LocalDate.of(2019, 12,23),
+                LocalDate.of(2024, 12,1),
                 LocalDate.now(ZoneId.systemDefault())
             )
         )

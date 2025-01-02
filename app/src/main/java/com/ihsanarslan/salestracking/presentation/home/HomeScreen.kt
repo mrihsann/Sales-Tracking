@@ -6,9 +6,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,7 +43,12 @@ fun HomeScreen(
         topBar = {
             CenterAlignedTopAppBar(title = {
                 Text(text = "Ana Sayfa")
-            })
+            },
+                actions = {
+                    IconButton(onClick = { navController.navigate(Router.ProductListScreen) }) {
+                        Icon(imageVector = Icons.Default.AddShoppingCart, contentDescription = "")
+                    }
+                })
         }
     ){
         Column (modifier = Modifier
@@ -66,9 +75,6 @@ fun HomeScreen(
                 }
             )
             Spacer(modifier = Modifier.height(25.dp))
-            Button(onClick = { navController.navigate(Router.ProductListScreen) }) {
-                Text(text = "Ürünler")
-            }
         }
     }
 }
