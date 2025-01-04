@@ -62,7 +62,7 @@ fun OrderHistory(
                         style = MaterialTheme.typography.bodyMedium
                     )
                     Text(
-                        text = "₺${data.price}",
+                        text = String.format("₺%.2f", data.price),
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

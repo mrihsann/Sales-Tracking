@@ -36,7 +36,7 @@ fun OrderItem(
         Column{
             Text(text = order.name, style = MaterialTheme.typography.titleMedium)
             Text(text = order.description, style = MaterialTheme.typography.bodyMedium)
-            Text(text = "${order.price} ₺", style = MaterialTheme.typography.bodyLarge)
+            Text(text = String.format("₺%.2f", order.price), style = MaterialTheme.typography.bodyLarge)
         }
         Spacer(modifier = Modifier.weight(1f))
         Column{
