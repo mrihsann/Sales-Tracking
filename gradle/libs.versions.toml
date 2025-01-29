@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.1"
+agp = "8.8.0"
 calendar = "1.3.0"
 composeCharts = "0.1.0"
 jetlime = "3.0.1"
